@@ -16,7 +16,7 @@ const RegisterPage = () => {
            const {name, value, files} = e.target
            setformData({...formData, 
             [name]: value,
-            [name]: name==="profileImage" ? files[0]: value
+            [name]: name === "profileImage" ? files[0]: value
 
            })
 
@@ -38,7 +38,7 @@ const RegisterPage = () => {
 
             <input placeholder='Confirm Password' name="confirmPassword" type="password" value={formData.confirmPassword} onChange = {handleChange} required />
 
-            <input type="file" name="profileImage" acccept="Image/" style={{display: "none"}} onChange = {handleChange} required/>
+            <input id="image" type="file" name="profileImage" accept="image/*" style={{display: "none"}} onChange = {handleChange} required/>
             
             <label htmlFor="image">
             <img src="/assets/addImage.png" alt="add profile picture" />
