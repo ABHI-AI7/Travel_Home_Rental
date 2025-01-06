@@ -1,6 +1,23 @@
+title: "My Travel Home Rental Site"
+description: "A website for booking travel home rentals."
+baseurl: "/Travel_Home_Rental"  # Change to your repository's name if it's different
+url: "https://ABHI-AI7.github.io"  # Replace with your actual GitHub username
+
+# Jekyll Theme configuration
+theme: "jekyll-theme-primer"
+
+# Exclude unwanted files and directories from the build
 exclude:
   - node_modules
   - vendor
   - Gemfile
   - Gemfile.lock
   - .gitignore
+
+# Optional GitHub Pages settings
+plugins:
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - jekyll-paginate
+  - jekyll-relative-links
+  - jekyll-default-layout
