@@ -48,19 +48,39 @@ const ListingCard = ({
   const isLiked = wishList?.find((item) => item?._id === listingId);
 
   const patchWishList = async () => {
-    if (user?._id !== creator._id) {
-    const response = await fetch(
-      `http://localhost:3001/users/${user?._id}/${listingId}`,
-      {
+    if (!user || !userId) {
+      console.error("User is not authenticated.");
+      return; // Exit if user data is missing
+    }
+  
+    if (!listingId) {
+      console.error("Listing data is missing.");
+      return; // Exit if listing data is missing
+    }
+  
+    try {
+      const response = await fetch(`http://localhost:3005/wishlist/${userId}/${listingId}`, {
         method: "PATCH",
-        header: {
-          "Content-Type": "application/json",
-        },
+      });
+  
+      if (!response.ok) {
+        // Log response details for debugging
+        const errorDetails = await response.text();
+        console.error("Failed to update wishlist:", errorDetails);
+        return; // Exit if the response is not ok
       }
-    );
-    const data = await response.json();
-    dispatch(setWishList(data.wishList));
-  } else { return }
+  
+      // Handle successful wishlist update
+      const data = await response.json();
+      console.log("Wishlist updated successfully:", data);
+  
+    } catch (error) {
+      console.error("Error updating wishlist:", error.message);
+    }
+  };
+
+  const handleClick = () => {
+    patchWishList();
   };
 
   return (
@@ -78,7 +98,7 @@ const ListingCard = ({
           {listingPhotoPaths?.map((photo, index) => (
             <div key={index} className="slide">
               <img
-                src={`http://localhost:3001/${photo?.replace("public", "")}`}
+                src={`http://localhost:3005/${photo?.replace("public", "")}`}
                 alt={`photo ${index + 1}`}
               />
               <div

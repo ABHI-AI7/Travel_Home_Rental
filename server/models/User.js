@@ -27,10 +27,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    wishList: {
+    wishList: [{
       type: Array,
       default: [],
-    },
+    }],
     propertyList: {
       type: Array,
       default: [],
