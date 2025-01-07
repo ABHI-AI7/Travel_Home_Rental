@@ -48,7 +48,7 @@ const ListingCard = ({
   const isLiked = wishList?.find((item) => item?._id === listingId);
 
   const patchWishList = async () => {
-    if (!user || !userId) {
+    if (!user || !user._id) {
       console.error("User is not authenticated.");
       return; // Exit if user data is missing
     }
@@ -59,7 +59,7 @@ const ListingCard = ({
     }
   
     try {
-      const response = await fetch(`http://localhost:3005/wishlist/${userId}/${listingId}`, {
+      const response = await fetch(`http://localhost:3005/wishlist/${user._id}/${listingId}`, {
         method: "PATCH",
       });
   

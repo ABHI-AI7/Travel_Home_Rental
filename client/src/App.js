@@ -12,6 +12,7 @@ import ReservationList from "./pages/ReservationList";
 import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
 
+
 function App() {
   return (
     <div>
